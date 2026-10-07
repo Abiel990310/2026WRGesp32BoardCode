@@ -1,4 +1,4 @@
-# WRG Robot Updater — China Normal
+# WRG Robot Updater
 
 macOS 15+, Intel and Apple Silicon. No Arduino IDE, Python, libraries,
 GitHub login or controller address entry is needed.
@@ -30,8 +30,9 @@ and contact the team. Managed Macs may require administrator approval.
 
 Pairing is read from the ESP32, never reassigned. Updates write only the
 application at 0x10000, after checking chip identity and the actual partition
-table. Unassigned robots, first-time setup, Taiwan and Special require the team
-loader. Bundled/cached verified firmware works without internet.
+table. China Normal is the default. Team members use **Choose another version…**
+and the team password to reveal the other versions and first-time setup controls.
+Bundled/cached verified firmware works without internet.
 
 **Stop operation** cancels downloads and force-stops uploads. Interrupting a
 write may prevent booting; contact your team for recovery. Pairing storage is
@@ -47,22 +48,24 @@ The app is ad-hoc signed, **not Developer ID signed or Apple-notarized**. macOS
 may block a downloaded copy's first launch. Friction-free broad distribution
 is pending Developer ID signing and notarization. Do not disable system security
 protections to run it. USB adapters or managed Macs may require drivers/approval.
-The app includes both flashing tools and depends only on macOS system frameworks;
+The app includes both flashing tools and the Sparkle app-update framework;
 it does not require Arduino IDE, Python, Homebrew, or developer tools on the user's
 Mac. We cannot yet promise installation-free operation for every USB adapter or
 managed Mac. If no serial port appears, check the data cable and ask the team
 whether that adapter needs its manufacturer's driver.
 
-The public updater app supports China Normal only. This repository also publishes
-the Taiwan Normal/Special and China Special firmware assets and Arduino sources
-for the separately shared team loader. These files are public: the team app's
-password is only a selection guard and does not restrict GitHub downloads.
-No team-password configuration, GitHub credentials, or private signing keys are
-published. The four-version team app is shared directly, not as a public app asset.
+This is one combined app for normal users and the team. China Normal firmware and
+source are readable on GitHub. The other three firmware images and their source
+archive are encrypted to hide their contents from casual browsing. The app contains
+the decryption key and bundled firmware; this is obfuscation, not protection against
+someone inspecting the app. The team password is a selection guard, not a GitHub
+access control. Earlier plaintext versions remain in Git history; this change does
+not make previously published code secret. No GitHub token or signing private key
+is included in the app.
 
-## Four-version team app
+## Team versions in the same app
 
-Ask the team for CodexPad Fleet Loader 2.1.0 or later. China Normal remains the
+Use WRG Robot Updater 2.2.0 or later. China Normal remains the
 default. Unlock other versions locally, select the matching board/version, then
 click **Check for updates**. No GitHub account or token is needed. For assigned
 robots, **Update keeping pairing** updates only the application and verifies
@@ -70,12 +73,24 @@ unchanged controller pairing after reboot. It refuses a different installed
 variant; intentional version/carrier changes need the team's Flash & assign flow.
 First-time setup uses **Check selected ports**, then **Flash & assign**, with each
 controller address entered. That flow uses the latest verified application if
-downloaded, otherwise the bundled/cached one. Firmware checks do not replace the
-Mac app itself; a new loader app must still be sent separately when needed.
+downloaded, otherwise the bundled/cached one.
 
-Arduino sources are under `firmware/`, with required libraries under `libraries/`.
+China Normal Arduino source is under `firmware/chinaver_basic/`, with required libraries under `libraries/`.
 Use the official Espressif Arduino core 3.3.6, ESP32 Dev Module, 4 MB default
 partitions, DIO, 80 MHz. See `firmware/BUILD_RESULTS.md` for testing limitations.
+
+## Updating the Mac app
+
+Use **WRG Robot Updater → Check for app updates…** in the menu bar. Sparkle
+checks the signed app feed and offers installation/relaunch when a newer app is
+published. Robot operations are blocked during an app-update cycle; app checks
+are refused while a robot operation is running. Dismiss the update dialog before
+returning to flashing. App updates preserve pairing because they do not flash the
+robot or overwrite the saved fleet map. Install the app in Applications first.
+Sparkle can check periodically with your consent; it does not force installation.
+Old apps without Sparkle need this combined app installed manually once.
+Apple signing/notarization and a clean-Mac upgrade test are still needed before
+claiming warning-free app updates on every Mac.
 
 ## Release verification and licenses
 
@@ -89,3 +104,4 @@ Third-party licenses are in `Contents/Resources/licenses`.
 Unmodified upload tool/source: https://github.com/espressif/esptool/tree/v5.1.0.
 Libraries: https://github.com/CodexPad/codex_pad_arduino_lib,
 https://github.com/CodexPad/GamepadInput, https://github.com/h2zero/NimBLE-Arduino.
+App updater: https://github.com/sparkle-project/Sparkle (2.10.0).
