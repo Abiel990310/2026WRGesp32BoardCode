@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?><!-- sparkle-sign-warning:
+IMPORTANT: This file was signed by Sparkle. Any modifications to this file requires re-signing this file with generate_appcast or sign_update! The signed signature will be embedded at the end of this file.
+--><rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>WRG Robot Updater</title>
+        <item>
+            <title>2.2.0</title>
+            <pubDate>Wed, 07 Oct 2026 14:50:31 +0800</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>2.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/Abiel990310/2026WRGesp32BoardCode/releases/download/v1.0.0/WRG-Robot-Updater-2.2.0.zip" length="28072507" type="application/octet-stream" sparkle:edSignature="Cg7Iod6hofN1xGR4IJ0RcUIsCdmsFB3KBNNvOOJ6nLHOeB3VeexHN/A4GTAEUBl8Q/Efh7OY8lByNCv9f7JYCA=="></enclosure>
+        </item>
+    </channel>
+</rss><!-- sparkle-signatures:
+edSignature: dpEpSNmEOrXOwP6rDC2bbZ2xOFVfAyUJ/JQhtlJuK3lIYiYbMl55itv4+B2+2tN0q9kSe9qDgCoOfzdDRPkJBQ==
+length: 1076
+-->
