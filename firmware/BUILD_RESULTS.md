@@ -55,6 +55,22 @@ downgrades, malformed replies, and update safety gates. No physical robot update
 was performed. Native Intel hardware remains untested. Both apps are ad-hoc signed,
 not Developer ID signed or notarized; broad distribution still needs Apple signing.
 
+## Four-version public firmware feed — team app 2.1.0
+
+The team app now anonymously downloads the selected variant's signed manifest
+and firmware from the public repository. All four live downloads passed pinned-key
+signature, variant, image size, and SHA256 verification. A different installed
+variant is rejected by Update keeping pairing. Host tests cover all four matching
+variant policies, selection/cache clearing, locked/public gates, and application-only
+upload recipes. Force Stop process-group regression tests passed again.
+
+The China Normal Check for updates UI passed with no connected robots. First-time
+Flash & assign stages downloaded verified firmware with compatible bundled boot
+images, without modifying app resources. Each variant has a separate verified
+cache. The GitHub code/assets are intentionally public; the app password provides
+only an accidental-selection guard. The Mac app is sent directly, not uploaded to
+the public release. No physical robot was flashed in this update.
+
 ## Compass disconnect hardening
 
 All four actual compass implementations passed host tests with a mocked Wire bus:
