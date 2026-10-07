@@ -3,6 +3,19 @@
 macOS 15+, Intel and Apple Silicon. No Arduino IDE, Python, libraries,
 GitHub login or controller address entry is needed.
 
+## First launch blocked by macOS
+
+The ZIP includes `INSTALL-FIRST.txt` beside the app. This pilot is not
+Apple-notarized. If macOS cannot verify the developer, try opening the app once,
+then dismiss the warning. Only if you trust the download, go to **System Settings
+→ Privacy & Security → Security → Open Anyway** for WRG Robot Updater and confirm
+**Open** in the next prompt. macOS saves an exception for this app.
+See [Apple's first-open instructions](https://support.apple.com/102445).
+
+Do not disable Gatekeeper or remove security protections with Terminal commands.
+If the warning says the app **will damage your computer** or **is damaged**, stop
+and contact the team. Managed Macs may require administrator approval.
+
 ## Update your robot
 
 1. Download `WRG-Robot-Updater-macOS.zip` from the latest Release. Extract it
@@ -34,6 +47,11 @@ The app is ad-hoc signed, **not Developer ID signed or Apple-notarized**. macOS
 may block a downloaded copy's first launch. Friction-free broad distribution
 is pending Developer ID signing and notarization. Do not disable system security
 protections to run it. USB adapters or managed Macs may require drivers/approval.
+The app includes both flashing tools and depends only on macOS system frameworks;
+it does not require Arduino IDE, Python, Homebrew, or developer tools on the user's
+Mac. We cannot yet promise installation-free operation for every USB adapter or
+managed Mac. If no serial port appears, check the data cable and ask the team
+whether that adapter needs its manufacturer's driver.
 
 Only China Normal firmware is distributed here. No Taiwan/Special binaries,
 team-password configuration, GitHub credentials or private signing keys are
