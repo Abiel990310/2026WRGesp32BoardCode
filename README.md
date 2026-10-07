@@ -65,7 +65,7 @@ is included in the app.
 
 ## Team versions in the same app
 
-Use WRG Robot Updater 2.2.0 or later. China Normal remains the
+Use WRG Robot Updater 2.2.1 or later. China Normal remains the
 default. Unlock other versions locally, select the matching board/version, then
 click **Check for updates**. No GitHub account or token is needed. For assigned
 robots, **Update keeping pairing** updates only the application and verifies
