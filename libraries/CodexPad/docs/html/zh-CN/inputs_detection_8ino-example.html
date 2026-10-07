@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CodexPad Arduino 库: inputs_detection.ino</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CodexPad Arduino 库<span id="projectnumber">&#160;3.1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('inputs_detection_8ino-example.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">inputs_detection.ino</div></div>
+</div><!--header-->
+<div class="contents">
+<p>演示如何检测已连接的 <a class="el" href="class_codex_pad.html" title="CodexPad主类">CodexPad</a> 设备的实时按钮状态与摇杆移动。</p>
+<p>演示如何检测已连接的 <a class="el" href="class_codex_pad.html" title="CodexPad主类">CodexPad</a> 设备的实时按钮状态与摇杆移动。 本示例通过Bluetooth Device Address连接到指定的 <a class="el" href="class_codex_pad.html" title="CodexPad主类">CodexPad</a> 设备，并持续监控所有用户输入。 它展示了三种不同的按钮状态检测： <b>按下</b> (瞬间按下)、 <b>释放</b> (瞬间释放)和 <b>持续按住</b> 。 同时，它监控模拟摇杆轴，当检测到超过设定阈值的显著变化时打印其值，从而过滤微小抖动。 </p><dl class="section note"><dt>注解</dt><dd>必须在主循环中尽可能频繁地调用 <code>Update()</code> 方法，且不得添加延时，以确保实时响应性并防止数据包丢失。 </dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_codex_pad.html#a539b79e6f5073ebebec51b2fedc8fe5a" title="更新，需要在Loop中不断调用">CodexPad::Update</a></dd></dl>
+<div class="fragment"><div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment"> * @~English</span></div>
+<div class="line"><span class="comment"> * @file inputs_detection.ino</span></div>
+<div class="line"><span class="comment"> * @example inputs_detection.ino</span></div>
+<div class="line"><span class="comment"> * @brief Demonstrates how to detect real-time button states and joystick movements of a connected CodexPad.</span></div>
+<div class="line"><span class="comment"> * @details This example establishes a connection to a specific CodexPad device (by Bluetooth Device Address) and continuously</span></div>
+<div class="line"><span class="comment"> *          monitors all user inputs. It showcases the detection of three distinct button states: **pressed** (momentary press),</span></div>
+<div class="line"><span class="comment"> *          **released** (momentary release), and</span></div>
+<div class="line"><span class="comment"> *          **holding** (sustained press). It also monitors the analog joystick axes and prints their values when a significant</span></div>
+<div class="line"><span class="comment"> *          change beyond a set threshold is detected, filtering out minor jitter.</span></div>
+<div class="line"><span class="comment"> * @note The `Update()` method must be called as frequently as possible within the main loop without delays to ensure</span></div>
+<div class="line"><span class="comment"> *       real-time responsiveness and prevent data packet loss.</span></div>
+<div class="line"><span class="comment"> * @see CodexPad::Update</span></div>
+<div class="line"><span class="comment"> */</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment"> * @~Chinese</span></div>
+<div class="line"><span class="comment"> * @file inputs_detection.ino</span></div>
+<div class="line"><span class="comment"> * @example inputs_detection.ino</span></div>
+<div class="line"><span class="comment"> * @brief 演示如何检测已连接的 CodexPad 设备的实时按钮状态与摇杆移动。</span></div>
+<div class="line"><span class="comment"> * @details 本示例通过Bluetooth Device Address连接到指定的 CodexPad 设备，并持续监控所有用户输入。</span></div>
+<div class="line"><span class="comment"> *          它展示了三种不同的按钮状态检测： **按下** (瞬间按下)、 **释放** (瞬间释放)和 **持续按住** 。</span></div>
+<div class="line"><span class="comment"> *          同时，它监控模拟摇杆轴，当检测到超过设定阈值的显著变化时打印其值，从而过滤微小抖动。</span></div>
+<div class="line"><span class="comment"> * @note 必须在主循环中尽可能频繁地调用 `Update()` 方法，且不得添加延时，以确保实时响应性并防止数据包丢失。</span></div>
+<div class="line"><span class="comment"> * @see CodexPad::Update</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &quot;codex_pad.h&quot;</span></div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment"> * IMPORTANT:</span></div>
+<div class="line"><span class="comment"> * This using directive is REQUIRED to directly access `Button` and `Axis`.</span></div>
+<div class="line"><span class="comment"> * Without it, you must write the fully qualified names:</span></div>
+<div class="line"><span class="comment"> *   gamepad::input::Button::kUp</span></div>
+<div class="line"><span class="comment"> *   gamepad::input::Axis::kLeftStickX</span></div>
+<div class="line"><span class="comment"> * Forgetting this line will cause compile errors when using Button or Axis.</span></div>
+<div class="line"><span class="comment"> */</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment"> * 重要：</span></div>
+<div class="line"><span class="comment"> * 必须使用该命名空间，否则无法直接访问 `Button` 和 `Axis`。</span></div>
+<div class="line"><span class="comment"> * 如果没有这一行，就必须写成完整限定名：</span></div>
+<div class="line"><span class="comment"> *   gamepad::input::Button::kUp</span></div>
+<div class="line"><span class="comment"> *   gamepad::input::Axis::kLeftStickX</span></div>
+<div class="line"><span class="comment"> * 忘记引入命名空间会导致编译失败。</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keyword">using namespace </span>gamepad::input;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span>{</div>
+<div class="line"><span class="comment">// Replace with your CodexPad device&#39;s Bluetooth device address</span></div>
+<div class="line"><span class="comment">// 替换为你的 CodexPad 的 Bluetooth device address</span></div>
+<div class="line"><span class="keyword">const</span> std::string kBluetoothDeviceAddress = <span class="stringliteral">&quot;E4:66:E5:A2:17:06&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line"><a id="_a0" name="_a0"></a><a class="code hl_class" href="class_codex_pad.html">CodexPad</a> g_codex_pad;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment"> * Convert button constant to readable string name</span></div>
+<div class="line"><span class="comment"> * 将按钮枚举转换为可读的字符串名称</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line">std::string ButtonToString(Button button) {</div>
+<div class="line">  <span class="keywordflow">switch</span> (button) {</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kUp: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Up&quot;</span>;  <span class="comment">// 上按钮 | UP button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kDown: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Down&quot;</span>;  <span class="comment">// 下按钮 | DOWN button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kLeft: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Left&quot;</span>;  <span class="comment">// 左按钮 | LEFT button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kRight: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Right&quot;</span>;  <span class="comment">// 右按钮 | RIGHT button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kSquareX: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Square(X)&quot;</span>;  <span class="comment">// 方形 或者 X 按钮 | SQUARE or X button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kTriangleY: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Triangle(Y)&quot;</span>;  <span class="comment">// 三角 或者 Y 按钮 | TRIANGLE or Y button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kCrossA: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Cross(A)&quot;</span>;  <span class="comment">// 叉型 或者 A 按钮 | CROSS or A button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kCircleB: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Circle(B)&quot;</span>;  <span class="comment">// 圆形 或者 B 按钮 | CIRCLE or B button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kL1: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;L1&quot;</span>;  <span class="comment">// L1按钮 | L1 button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kL2: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;L2&quot;</span>;  <span class="comment">// L2按钮 | L2 button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kL3: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;L3&quot;</span>;  <span class="comment">// L3按钮 | L3 button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kR1: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;R1&quot;</span>;  <span class="comment">// R1按钮 | R1 button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kR2: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;R2&quot;</span>;  <span class="comment">// R2按钮 | R2 button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kR3: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;R3&quot;</span>;  <span class="comment">// R3按钮 | R3 button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kSelect: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Select&quot;</span>;  <span class="comment">// 选择按钮 | SELECT button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kStart: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Start&quot;</span>;  <span class="comment">// 开始按钮 | START button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> Button::kHome: {</div>
+<div class="line">      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Home&quot;</span>;  <span class="comment">// 首页按钮 | HOME button</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">default</span>: {</div>
+<div class="line">      <span class="keywordflow">return</span> {};  <span class="comment">// 未知按钮返回空字符串 | Unknown button returns empty string</span></div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> Connect() {</div>
+<div class="line">  printf(<span class="stringliteral">&quot;Start to connect %s\n&quot;</span>, kBluetoothDeviceAddress.c_str());</div>
+<div class="line">  <span class="comment">// Connect to the CodexPad with specified Bluetooth device address</span></div>
+<div class="line">  <span class="comment">// 连接到指定蓝牙设备地址的手柄</span></div>
+<div class="line">  <span class="keywordflow">while</span> (!g_codex_pad.<a id="a1" name="a1"></a><a class="code hl_function" href="class_codex_pad.html#a38e33a7bb5447c7af64c0e02e44ac780">Connect</a>(kBluetoothDeviceAddress, 5000)) {</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Retry to connect %s\n&quot;</span>, kBluetoothDeviceAddress.c_str());</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  printf(<span class="stringliteral">&quot;Remote device name: %s\n&quot;</span>, g_codex_pad.<a id="a2" name="a2"></a><a class="code hl_function" href="class_codex_pad.html#a7944e98376efef3a8674c34ac7ea6694">remote_device_name</a>().c_str());</div>
+<div class="line">  printf(<span class="stringliteral">&quot;Remote model number: %s\n&quot;</span>, g_codex_pad.<a id="a3" name="a3"></a><a class="code hl_function" href="class_codex_pad.html#a5aa668bc50e04ba10ff32cc3f20e4b0d">remote_model_number</a>().c_str());</div>
+<div class="line">  printf(<span class="stringliteral">&quot;Remote firmware revision: %u.%u.%u\n&quot;</span>, g_codex_pad.<a id="a4" name="a4"></a><a class="code hl_function" href="class_codex_pad.html#a4f6f2a0a84e061ac1143c136a8b0b962">remote_firmware_version</a>()[0],</div>
+<div class="line">         g_codex_pad.<a class="code hl_function" href="class_codex_pad.html#a4f6f2a0a84e061ac1143c136a8b0b962">remote_firmware_version</a>()[1], g_codex_pad.<a class="code hl_function" href="class_codex_pad.html#a4f6f2a0a84e061ac1143c136a8b0b962">remote_firmware_version</a>()[2]);</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">if</span> (<span class="keyword">const</span> <span class="keyword">auto</span> ble_client = g_codex_pad.<a id="a5" name="a5"></a><a class="code hl_function" href="class_codex_pad.html#a65ac4cf32b665b2a378bd984346bf930">ble_client</a>(); ble_client != <span class="keyword">nullptr</span>) {</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Remote Bluetooth Device Address: %s\n&quot;</span>, ble_client-&gt;getPeerAddress().toString().c_str());</div>
+<div class="line">  } <span class="keywordflow">else</span> {</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Remote Bluetooth Device Address: unknown\n&quot;</span>);</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// Set transmission power to 0dBm</span></div>
+<div class="line">  <span class="comment">// Transmission power affects communication range and power consumption:</span></div>
+<div class="line">  <span class="comment">// Higher power provides longer range but consumes more battery</span></div>
+<div class="line">  <span class="comment">// Choose appropriate power level based on your application to balance range and battery life</span></div>
+<div class="line">  <span class="comment">// 设置发射功率为0dBm</span></div>
+<div class="line">  <span class="comment">// 发射功率影响通信距离和功耗：功率越高，通信距离越远，但功耗也越大</span></div>
+<div class="line">  <span class="comment">// 建议根据实际应用场景选择合适的功率等级以平衡距离和电池寿命</span></div>
+<div class="line">  <span class="keywordflow">if</span> (g_codex_pad.<a id="a6" name="a6"></a><a class="code hl_function" href="class_codex_pad.html#aa6500b221c537c93c8f7f218297d946b">set_remote_tx_power</a>(<a class="code hl_enumvalue" href="class_codex_pad.html#add2a85d4d2df117adb74c05604e86354aaa423916e29159d7ee79ddb9b7e4491b">CodexPad::TxPower::k0dBm</a>)) {</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Set remote tx power to 0dBm successfully\n&quot;</span>);</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  printf(<span class="stringliteral">&quot;Connected\n&quot;</span>);</div>
+<div class="line">}</div>
+<div class="line">}  <span class="comment">// namespace</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> setup() {</div>
+<div class="line">  Serial.begin(115200);</div>
+<div class="line"> </div>
+<div class="line">  printf(<span class="stringliteral">&quot;Init\n&quot;</span>);</div>
+<div class="line">  g_codex_pad.Init();</div>
+<div class="line"> </div>
+<div class="line">  Connect();</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="comment">// 🔴 CRITICAL: Call Update() as frequently as possible in loop()</span></div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="comment">// • Update() processes incoming Bluetooth packets from the CodexPad</span></div>
+<div class="line">  <span class="comment">// • Any delay(...) or long blocking code WILL cause:</span></div>
+<div class="line">  <span class="comment">//     - Packet loss</span></div>
+<div class="line">  <span class="comment">//     - Input lag</span></div>
+<div class="line">  <span class="comment">//     - Unstable connection</span></div>
+<div class="line">  <span class="comment">//</span></div>
+<div class="line">  <span class="comment">// • For real-time control, call Update() every loop iteration</span></div>
+<div class="line">  <span class="comment">//   without any blocking operations</span></div>
+<div class="line">  <span class="comment">//</span></div>
+<div class="line">  <span class="comment">// 🔴【重要】Update() 必须在 loop() 中尽可能高频调用</span></div>
+<div class="line">  <span class="comment">// • Update() 负责处理来自 CodexPad 的蓝牙数据包</span></div>
+<div class="line">  <span class="comment">// • 任何形式的 delay 或阻塞代码都会导致：</span></div>
+<div class="line">  <span class="comment">//     - 数据丢失</span></div>
+<div class="line">  <span class="comment">//     - 响应延迟</span></div>
+<div class="line">  <span class="comment">//     - 连接不稳定</span></div>
+<div class="line">  <span class="comment">//</span></div>
+<div class="line">  <span class="comment">// • 实时控制应用中，必须每轮循环都调用 Update()，不可阻塞</span></div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="keyword">const</span> gamepad::input::Tracker&amp; it = g_codex_pad.Update();</div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="comment">// Tracker: Gamepad Input Snapshot &amp; Change Engine</span></div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="comment">// • Returned by Update()</span></div>
+<div class="line">  <span class="comment">// • Maintains previous and current input snapshots</span></div>
+<div class="line">  <span class="comment">// • Enables edge detection and delta detection</span></div>
+<div class="line">  <span class="comment">//</span></div>
+<div class="line">  <span class="comment">// Tracker 由 Update() 返回</span></div>
+<div class="line">  <span class="comment">// 内部保存上一帧和当前帧的输入数据</span></div>
+<div class="line">  <span class="comment">// 支持边沿检测和差值检测</span></div>
+<div class="line">  <span class="comment">//</span></div>
+<div class="line">  <span class="comment">// 📚 https://codexpad.github.io/gamepad_input_arduino_lib/</span></div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">if</span> (!g_codex_pad.is_connected()) {</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Disconnected, start to reconnect\n&quot;</span>);</div>
+<div class="line">    Connect();</div>
+<div class="line">    <span class="keywordflow">return</span>;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="comment">// 🟢 Button State Change Detection (Edge-Based)</span></div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="comment">// • pressed()  → button was just pressed (released → pressed)</span></div>
+<div class="line">  <span class="comment">// • released() → button was just released (pressed → released)</span></div>
+<div class="line">  <span class="comment">// • holding()  → button remains pressed across frames</span></div>
+<div class="line">  <span class="comment">//</span></div>
+<div class="line">  <span class="comment">// These APIs are *frame-differential* and rely on Update() frequency.</span></div>
+<div class="line">  <span class="comment">// Ideal for UI navigation, action triggers, and avoiding repeat firing.</span></div>
+<div class="line">  <span class="comment">//</span></div>
+<div class="line">  <span class="comment">// • pressed()  → 按钮刚被按下（弹起 → 按下）</span></div>
+<div class="line">  <span class="comment">// • released() → 按钮刚被释放（按下 → 弹起）</span></div>
+<div class="line">  <span class="comment">// • holding()  → 按钮在两帧之间持续按下</span></div>
+<div class="line">  <span class="comment">//</span></div>
+<div class="line">  <span class="comment">// 这些接口是“帧间差分”的，依赖于 Update() 的高频调用</span></div>
+<div class="line">  <span class="comment">// 非常适合 UI 导航、动作触发和防止长按连发</span></div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="keywordflow">for</span> (<span class="keyword">auto</span> button : {Button::kUp, Button::kDown, Button::kLeft, Button::kRight, Button::kSquareX, Button::kTriangleY,</div>
+<div class="line">                      Button::kCrossA, Button::kCircleB, Button::kL1, Button::kL2, Button::kL3, Button::kR1, Button::kR2,</div>
+<div class="line">                      Button::kR3, Button::kSelect, Button::kStart, Button::kHome}) {</div>
+<div class="line">    <span class="keywordflow">if</span> (it.pressed(button)) {</div>
+<div class="line">      printf(<span class="stringliteral">&quot;Button %s: pressed\n&quot;</span>, ButtonToString(button).c_str());</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (it.released(button)) {</div>
+<div class="line">      printf(<span class="stringliteral">&quot;Button %s: released\n&quot;</span>, ButtonToString(button).c_str());</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (it.holding(button)) {</div>
+<div class="line">      printf(<span class="stringliteral">&quot;Button %s: holding\n&quot;</span>, ButtonToString(button).c_str());</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="comment">// 🟢 Joystick Axis Change Detection (Threshold-Based Filtering)</span></div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="comment">// • AxisChanged() detects significant changes between frames</span></div>
+<div class="line">  <span class="comment">// • Uses a threshold to filter out noise and minor jitter</span></div>
+<div class="line">  <span class="comment">// • Only reports movement when change ≥ threshold</span></div>
+<div class="line">  <span class="comment">//</span></div>
+<div class="line">  <span class="comment">// • AxisChanged() 用于检测摇杆轴值的有效变化</span></div>
+<div class="line">  <span class="comment">// • 使用阈值过滤微小抖动和噪声</span></div>
+<div class="line">  <span class="comment">// • 只有当变化幅度 ≥ 阈值时才视为有效移动</span></div>
+<div class="line">  <span class="comment">// ==========================================================================</span></div>
+<div class="line">  <span class="keyword">constexpr</span> uint8_t kAxisValueChangeThreshold = 2;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">if</span> (it.AxisChanged(Axis::kLeftStickX, kAxisValueChangeThreshold) ||</div>
+<div class="line">      it.AxisChanged(Axis::kLeftStickY, kAxisValueChangeThreshold) ||</div>
+<div class="line">      it.AxisChanged(Axis::kRightStickX, kAxisValueChangeThreshold) ||</div>
+<div class="line">      it.AxisChanged(Axis::kRightStickY, kAxisValueChangeThreshold)) {</div>
+<div class="line">    printf(<span class="stringliteral">&quot;L(X: %3&quot;</span> PRIu8 <span class="stringliteral">&quot;, Y:%3&quot;</span> PRIu8 <span class="stringliteral">&quot;), R(X: %3&quot;</span> PRIu8 <span class="stringliteral">&quot;, Y: %3&quot;</span> PRIu8 <span class="stringliteral">&quot;)\n&quot;</span>, it[Axis::kLeftStickX],</div>
+<div class="line">           it[Axis::kLeftStickY], it[Axis::kRightStickX], it[Axis::kRightStickY]);</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_codex_pad_html"><div class="ttname"><a href="class_codex_pad.html">CodexPad</a></div><div class="ttdoc">CodexPad主类</div><div class="ttdef"><b>定义</b> <a href="codex__pad_8h_source.html#l00023">codex_pad.h:23</a></div></div>
+<div class="ttc" id="aclass_codex_pad_html_a38e33a7bb5447c7af64c0e02e44ac780"><div class="ttname"><a href="class_codex_pad.html#a38e33a7bb5447c7af64c0e02e44ac780">CodexPad::Connect</a></div><div class="ttdeci">bool Connect(const std::string &amp;bluetooth_device_address, uint32_t timeout_ms=5000) noexcept</div><div class="ttdoc">连接</div><div class="ttdef"><b>定义</b> <a href="codex__pad_8cpp_source.html#l00041">codex_pad.cpp:41</a></div></div>
+<div class="ttc" id="aclass_codex_pad_html_a4f6f2a0a84e061ac1143c136a8b0b962"><div class="ttname"><a href="class_codex_pad.html#a4f6f2a0a84e061ac1143c136a8b0b962">CodexPad::remote_firmware_version</a></div><div class="ttdeci">const std::array&lt; uint8_t, 3 &gt; &amp; remote_firmware_version() const noexcept</div><div class="ttdoc">获取CodexPad的固件版本</div><div class="ttdef"><b>定义</b> <a href="codex__pad_8h_source.html#l00354">codex_pad.h:354</a></div></div>
+<div class="ttc" id="aclass_codex_pad_html_a5aa668bc50e04ba10ff32cc3f20e4b0d"><div class="ttname"><a href="class_codex_pad.html#a5aa668bc50e04ba10ff32cc3f20e4b0d">CodexPad::remote_model_number</a></div><div class="ttdeci">const std::string &amp; remote_model_number() const noexcept</div><div class="ttdoc">获取CodexPad的型号</div><div class="ttdef"><b>定义</b> <a href="codex__pad_8h_source.html#l00342">codex_pad.h:342</a></div></div>
+<div class="ttc" id="aclass_codex_pad_html_a65ac4cf32b665b2a378bd984346bf930"><div class="ttname"><a href="class_codex_pad.html#a65ac4cf32b665b2a378bd984346bf930">CodexPad::ble_client</a></div><div class="ttdeci">NimBLEClient * ble_client() const noexcept</div><div class="ttdoc">获取 BLE 客户端对象</div><div class="ttdef"><b>定义</b> <a href="codex__pad_8h_source.html#l00383">codex_pad.h:383</a></div></div>
+<div class="ttc" id="aclass_codex_pad_html_a7944e98376efef3a8674c34ac7ea6694"><div class="ttname"><a href="class_codex_pad.html#a7944e98376efef3a8674c34ac7ea6694">CodexPad::remote_device_name</a></div><div class="ttdeci">const std::string &amp; remote_device_name() const noexcept</div><div class="ttdoc">获取CodexPad的型号</div><div class="ttdef"><b>定义</b> <a href="codex__pad_8h_source.html#l00330">codex_pad.h:330</a></div></div>
+<div class="ttc" id="aclass_codex_pad_html_aa6500b221c537c93c8f7f218297d946b"><div class="ttname"><a href="class_codex_pad.html#aa6500b221c537c93c8f7f218297d946b">CodexPad::set_remote_tx_power</a></div><div class="ttdeci">bool set_remote_tx_power(TxPower power) noexcept</div><div class="ttdoc">设置发射功率，连接状态下调用，立即生效于当前连接，下次连接生效</div><div class="ttdef"><b>定义</b> <a href="codex__pad_8cpp_source.html#l00138">codex_pad.cpp:138</a></div></div>
+<div class="ttc" id="aclass_codex_pad_html_add2a85d4d2df117adb74c05604e86354aaa423916e29159d7ee79ddb9b7e4491b"><div class="ttname"><a href="class_codex_pad.html#add2a85d4d2df117adb74c05604e86354aaa423916e29159d7ee79ddb9b7e4491b">CodexPad::TxPower::k0dBm</a></div><div class="ttdeci">@ k0dBm</div><div class="ttdoc">0 dBm</div><div class="ttdef"><b>定义</b> <a href="codex__pad_8h_source.html#l00104">codex_pad.h:104</a></div></div>
+</div><!-- fragment --> </div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.0 </li>
+  </ul>
+</div>
+</body>
+</html>

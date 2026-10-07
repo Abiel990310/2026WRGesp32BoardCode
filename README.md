@@ -53,9 +53,29 @@ Mac. We cannot yet promise installation-free operation for every USB adapter or
 managed Mac. If no serial port appears, check the data cable and ask the team
 whether that adapter needs its manufacturer's driver.
 
-Only China Normal firmware is distributed here. No Taiwan/Special binaries,
-team-password configuration, GitHub credentials or private signing keys are
-included. The separate team loader retains password-protected version selection.
+The public updater app supports China Normal only. This repository also publishes
+the Taiwan Normal/Special and China Special firmware assets and Arduino sources
+for the separately shared team loader. These files are public: the team app's
+password is only a selection guard and does not restrict GitHub downloads.
+No team-password configuration, GitHub credentials, or private signing keys are
+published. The four-version team app is shared directly, not as a public app asset.
+
+## Four-version team app
+
+Ask the team for CodexPad Fleet Loader 2.1.0 or later. China Normal remains the
+default. Unlock other versions locally, select the matching board/version, then
+click **Check for updates**. No GitHub account or token is needed. For assigned
+robots, **Update keeping pairing** updates only the application and verifies
+unchanged controller pairing after reboot. It refuses a different installed
+variant; intentional version/carrier changes need the team's Flash & assign flow.
+First-time setup uses **Check selected ports**, then **Flash & assign**, with each
+controller address entered. That flow uses the latest verified application if
+downloaded, otherwise the bundled/cached one. Firmware checks do not replace the
+Mac app itself; a new loader app must still be sent separately when needed.
+
+Arduino sources are under `firmware/`, with required libraries under `libraries/`.
+Use the official Espressif Arduino core 3.3.6, ESP32 Dev Module, 4 MB default
+partitions, DIO, 80 MHz. See `firmware/BUILD_RESULTS.md` for testing limitations.
 
 ## Release verification and licenses
 
